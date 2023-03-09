@@ -40,7 +40,7 @@
                  <br>
                  <strong>Question:</strong><br>
                  How many balls, on average, do you expect to be green after <i>m</i> minutes
-                  if there are <i>n</i>=7 blue balls in the jar at the beginning and the duration is <i>m</i>=10 minutes?
+                  if there are <i>n</i>=7 blue balls in the jar at the beginning and the duration is <i>m</i>=10 minutes? (You do not necessarily have to perform any major calculations to reach the answer)
             </div>
             <div class="w-3/6 p-2">
                 Video:
@@ -74,6 +74,133 @@
             <div>
                 <button class="float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click="showResult = true">Submit</button>
             </div>
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            So if you have chosen an alternative above, let's see how we can reach the answer quickly.
+            The solution process can be summarized as:
+            <blockquote class="m-5">
+                To gauge the correctness of a formula, modify the problem to one where you know 
+                what the answer will be and then assert that your formula gives the correct answer in that case.     
+            </blockquote>
+            <p>
+                For example, if there was only one ball and we only performed this process for one minute (so <i>n</i>=1 and <i>m</i>=1) then we can 
+                quickly realize that the expected number of green balls at the end should be 1. If we insert <i>n</i>=1 and <i>m</i>=1 
+                into our formulas above then we can see that Option 1 is the only one that gives the value 1, which means that it is the correct 
+                formula.
+            </p>
+            <br>
+            <p>
+                To me this technique is very reminiscent of how one constructs useful tests for software methods.
+                I believe that we can summarize the process of simple software testing as 
+                <blockquote class="m-5">
+                    To gauge the correctness of a software method, insert input parameters for which you
+                    what the output will be and then assert that your method gives the expected answer in that case.     
+                </blockquote>
+            </p>
+            So in both cases we simply modify the arguments/parameters of our functions, and then verify that they output what we expect.
+            
+            While these verification techniques are nothing novel, 
+            I believe that the connection between these domains is something that people can at times miss. 
+            
+            I have encountered several software engineers who easily grasp the concept of testing software methods but 
+            who fail at performing simple soundness checks when dealing with math formulas, and similarly encountered mathematicians 
+            who struggle in the opposite direction. In my view, a culprit of this overlooked connection is that we sometimes tend to 
+            entrench our thought process in the terminology and constructs of our main discpline, and lack a bird's eye view 
+            of how these concepts can be shared across diverse domains. Software methods are seen as something that is implemented 
+            in code and not written out abstractly with math, and ...
+            
+            even though they are the same.
+
+            
+
+
+            shape our thought process around the terminology that we are familiar with, 
+
+            entrench our thought process in the terminology and constructs of our main domain, and lack a bird's eye view 
+            of how these concepts can be shared across diverse disciplines.  
+
+            view everything through domain-tinted glasses, 
+
+            to entrench our thought processes in the 
+
+            perspective of the field 
+
+            terminology of our 
+
+            base our though process in the frame of reference of our 
+
+            cross-fertilization 
+
+            we sometimes become entrenched in the terminology of 
+            
+            ingrain 
+
+            The culprit of this overlooked connection
+            
+            
+            is maybe a lack of a birds eye view of what we are dealing with, and not 
+            being stuck in terminology and thought structures of the field that is our main occupation.
+            
+            
+            wants to implement some software. 
+
+
+
+            While this might seem like an obvious procedure
+            
+            Even though this technique might appear like 
+
+            While the similarity of the two processes might be apparent when they are written out like this,
+
+
+            
+            sometimes we are stuck in our own world with its own terminology and notation and it can be difficult to 
+
+
+
+            While the analogues 
+
+            So if you are a software engineer that wants to 
+
+            So I think that the same mindset that allows us to verify that 
+
+            While it might seem obvious
+
+            The similarity of the two solution processes
+
+
+
+
+            
+
+            
+            Option 2 and 3 above gives the answer 0 for 
+            this case which 
+
+
+            For example, we can quickly realize that if the number of minutes <i>m</i> becomes extremely large then the expected number 
+            of green balls in the jar at the end should be roughly equal to the total number of balls <i>n</i> (since we it is 
+            becomes more and more unlikely that we will not pick up every ball at some point). It is easy to see that option 2 and 3 above 
+            fails this test since 
+            
+            
+            
+            
+            Similarly, we can quickly realize 
+            that if there is only one ball in the jar (so <i>n</i>=1) then the expected value should be 1 as well as long as <i>m</i>
+            is larger than 0.
+            
+            
+            A great trick to use in these 
+
+
+            I think a
+            
+            I believe that it is good practice to test 
+
+
+
         </div>
 
     </div>
