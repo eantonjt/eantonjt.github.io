@@ -30,35 +30,49 @@
 
         <div class="w-full m-1 md:w-4/6 max-w-[900px] flex justify-center">
             <div class="w-3/6 p-2">
-                <strong>Example (Papers in a jar):</strong><br>Assume that you have a jar with <i>n</i> papers inside. Every minute you pick up one paper at random from the jar,
-                 mark it with a pen and put it back in the jar. If you pick up a paper that you marked at some previous minute then you simply
-                 put it back straight away. You perform this process for a total of <i>m</i> minutes. 
+                <strong>Example (Balls in a jar):</strong><br>
+                Assume that you have a jar with <i>n</i> blue balls inside. 
+                Every minute you pick up one ball at random from the jar,
+                paint it green and put it back in the jar.
+                If you by chance pick up a green ball from the jar that you painted at some previous minute, 
+                then you simply put it back in the jar. You perform this process for a total of <i>m</i>
+                 minutes (so you will pick up <i>m</i> balls in total). 
+                 <br>
                  <strong>Question:</strong><br>
-                 How many papers do you expect to be marked on average after <i>m</i> minutes
-                  if there are <i>n</i>=7 papers in the jar and the duration <i>m</i>=10 minutes?
+                 How many balls, on average, do you expect to be green after <i>m</i> minutes
+                  if there are <i>n</i>=7 blue balls in the jar at the beginning and the duration is <i>m</i>=10 minutes?
             </div>
             <div class="w-3/6 p-2">
-                Video here
+                Video:
+
+
             </div>    
         </div>
 
-        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
-            Alternatives:<br> Num papers marked on average =<br>
-            <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full  m-1">
-                <input type="radio" id="javascript" name="correct_formula" value="3">
-                <label for="3"> n &middot; ( 1 - ((n-1)/n)<sup>m</sup> ) = 7 &middot; ( 1 - (6/7)<sup>10</sup> ) &asymp; 5.50 </label>
-            </div>
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]"  x-data="{ showResult : false, clickedRadioBallBtn : false }">
+            Alternatives:<br> Average amount of green balls after 10 minutes =<br>
             <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full m-1">
-                <input type="radio" id="html" name="correct_formula" value="1">
-                <label for="1">n/m &middot; (m-1) = 7/10 &middot; (10 - 1) = 6.3 </label><br>
+                <input type="radio" id="javascript" name="correct_formula" value="3" @click="clickedRadioBallBtn = true, showResult = false">
+                <label for="3"> n &middot; ( 1 - ((n-1)/n)<sup>m</sup> ) = 7 &middot; ( 1 - (6/7)<sup>10</sup> ) &asymp; 5.50 </label>
+                <span x-show="showResult && clickedRadioBallBtn" x-transition class="float-right">✅</span>
+            </div>
+            <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full m-1" >
+                <input type="radio" id="html" name="correct_formula" value="1" @click="clickedRadioBallBtn = true, showResult = false">
+                <label for="1">n/m &middot; (m-1) = 7/10 &middot; (10 - 1) = 6.3 </label>
+                <span x-show="showResult && clickedRadioBallBtn" x-transition class="float-right">❌</span>
             </div>
             <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full  m-1">
-                <input type="radio" id="css" name="correct_formula" value="2">
-                <label for="2">(m-n)<sup>2n/m</sup> = (10-7)<sup>2 &middot; 7/10</sup> &asymp; 4.66 </label><br>
+                <input type="radio" id="css" name="correct_formula" value="2" @click="clickedRadioBallBtn = true, showResult = false">
+                <label for="2">(m-n)<sup>2n/m</sup> = (10-7)<sup>2 &middot; 7/10</sup> &asymp; 4.66 </label>
+                <span x-show="showResult && clickedRadioBallBtn" x-transition class="float-right">❌</span>
             </div>
             <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full  m-1">
-                <input type="radio" id="javascript" name="correct_formula" value="4">
+                <input type="radio" id="javascript" name="correct_formula" value="4" @click="clickedRadioBallBtn = true, showResult = false">
                 <label for="4">n &middot; ( 1 - m<sup>n</sup> &middot; n<sup>m</sup> / (m + n)<sup>m+n</sup> ) = 7 &middot; ( 1 - 10<sup>7</sup> &middot; 7<sup>10</sup> / (17)<sup>17</sup> ) &asymp; 6.99 </label>
+                <span x-show="showResult && clickedRadioBallBtn" x-transition class="float-right">❌</span>
+            </div>
+            <div>
+                <button class="float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click="showResult = true">Submit</button>
             </div>
         </div>
 
