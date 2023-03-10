@@ -79,7 +79,7 @@
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
             So if you have chosen an alternative above, let's see how we can reach the answer quickly.
             The solution process can be summarized as:
-            <blockquote class="m-5">
+            <blockquote class="m-5 border-l-4 border-[#334155] p-2">
                 To gauge the correctness of a formula, modify the problem to one where you know 
                 what the answer will be and then assert that your formula gives the correct answer in that case.     
             </blockquote>
@@ -94,7 +94,7 @@
             <p>
                 To me this technique is very reminiscent of how one constructs useful tests for software methods.
                 I believe that we can summarize the process of simple software testing as 
-                <blockquote class="m-5">
+                <blockquote class="m-5 border-l-4 border-[#334155] p-2">
                     To gauge the correctness of a software method, insert input parameters for which you
                     what the output will be and then assert that your method gives the expected answer in that case.     
                 </blockquote>
@@ -117,7 +117,7 @@
             This technique can be seen as a special case of <strong>Technique 1</strong> but since software engineering rarely 
             includes limiting values I thought it could be instructive to separate them into two techniques. This technique can be 
             summarized as 
-            <blockquote class="m-5">
+            <blockquote class="m-5 border-l-4 border-[#334155] p-2">
                 If your formula should be valid for all input values, verify that it is valid when letting some input values 
                 go to infinity or some other extreme value.   
             </blockquote>
@@ -132,10 +132,64 @@
             For our formula, the limit when <i>d</i> goes to infinity is <i>C &middot; A</i> which is positive and not zero, indicating that there is some error with the formula.
         </div>
 
+        <div class="w-full m-1 md:w-4/6 max-w-[900px] flex justify-center">
+            <div class="w-3/6 p-2">
+                <strong>Technique 3: (It should be possible to reduce a more general formula to a known special case)</strong><br>
+            Once again, one can see this technique as a special case of <strong>Technique 1</strong> but in this case the expected 
+            answer that we assert against will not be a numerical value, but instead another formula. For example, from physics we 
+            know that the distance <i>d</i> travelled by a launched object with initial velocity <i>v</i>, angle <i>t</i> and neglecting air resistance
+             is given as 
+            <div class="text-center m-1">  <i>d</i> = <i>v</i><sup>2</sup> &middot; sin (2 &middot; <i>t</i>) / g,</div>
+            see image to the right for an illustration of this. Now we want to derive a formula for the distance <i>d</i> travelled when we 
+            do not neglect air resistance. In our simple models we include an air resistance coefficient <i>r</i> which measures the strength of 
+            the air resistance. If we have <i>r</i>=0 then that means there is no air resistance and if <i>r</i> is large then that means 
+            that there is a lot of resistance. Through some calculations we obtain the two formulas below (assume <i>f, g</i> are some functions of the velocity which specifics we can ignore at the moment). Which of these formulas can we immediately 
+            conclude is incorrect?
+
+            </div>
+            <div class="w-3/6 p-2">
+                Video:
+            </div>    
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]"  x-data="{ showResult : false, clickedRadioBallBtn : false }">
+            Alternatives:<br> Formulas for distance travelled by object when not neglecting air resistance<br>
+            <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full m-1">
+                <input type="radio" id="javascript" name="correct_formula" value="3" @click="clickedRadioBallBtn = true, showResult = false">
+                <label for="3"> <i>d</i> = <i>v</i><sup>2</sup> &middot; sin (2 &middot; <i>t</i>) / g+ <i>r</i><sup>2</sup> &middot; <i>f</i>(<i>v</i>) </label>
+                <span x-show="showResult && clickedRadioBallBtn" x-transition class="float-right">✅</span>
+            </div>
+            <div class="border-solid border-2 border-[#e2e8f0] p-1 w-full m-1" >
+                <input type="radio" id="html" name="correct_formula" value="1" @click="clickedRadioBallBtn = true, showResult = false">
+                <label for="1"><i>d</i> = <i>v</i><sup>2</sup> &middot; sin (2 &middot; <i>t</i>) / g + (<i>r</i><sup>2</sup>+1) &middot; <i>g</i>(<i>v</i>) </label>
+                <span x-show="showResult && clickedRadioBallBtn" x-transition class="float-right">❌</span>
+            </div>
+            <div>
+                <button class="float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" @click="showResult = true">Submit</button>
+            </div>
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            So if you have chosen an alternative above, let's see how we can reach the answer quickly.
+            Since we know that <i>r</i>=0 corresponds to the situation when there is no air resistance, 
+            we know that if we set <i>r</i>=0 we must recover the original formula, <i>d</i> = <i>v</i><sup>2</sup> &middot; sin (2 &middot; <i>t</i>) / g, that neglects air 
+            resistance all together. Thus we see that alternative 2 must be wrong since for zero air resistance 
+            we do not recover the original formula but instead we get an extra term <i>g(v)</i>. 
+            So we can see that in this case we do not assert against a numerical value, but instead assert that it is possible to derive 
+            the special case formula (where air resistance is neglected) from the more general formula (where air resistance is included).
+            
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
+
+        </div>
+
     </div>
 
 </body>
 
+<!--Technique 4. See if what you are assuming implies something too strong?-->
+<!--Technique 4. Check your answer by simulation?-->
 
 
 
