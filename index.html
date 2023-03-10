@@ -87,7 +87,8 @@
                 For example, if there was only one ball and we only performed this process for one minute (so <i>n</i>=1 and <i>m</i>=1) then we can 
                 quickly realize that the expected number of green balls at the end should be 1. If we insert <i>n</i>=1 and <i>m</i>=1 
                 into our formulas above then we can see that Option 1 is the only one that gives the value 1, which means that it is the correct 
-                formula.
+                formula. And since option 1 is the only correct formula we know that the expected number of green balls for the parameters <i>n</i>=7 and <i>m</i>=10 
+                must be roughly 5.5. 
             </p>
             <br>
             <p>
@@ -101,19 +102,34 @@
             So in both cases we simply modify the arguments/parameters of our functions, and then verify that they output what we expect.
             I believe that the connection between verification in these domains is something that people can at times miss,
             and by making the connection more explicit I hope that software engineers who struggle with math can hopefully 
-            approach the verification of formulas from a perspective which they are more familiar with (and likewise for mathematicians working with software).
+            approach the verification of formulas from a perspective which they are more familiar with (and likewise for mathematicians working with software).            
+            <br><br>
+
+            The rest of this blog post will be about different testing techniques to verify the correctness of math formulas
+            that might differ slightly from techniques used in software testing, since the overlap of the fields is not 100%.
+            The technique we used above to modify the parameters to create a problem where we knew the solution I will informally 
+            refer to as <strong>Technique 1 (Modification of parameters)</strong>.
             
+        </div>
 
-
-            While these verification techniques are nothing novel, 
-            I believe that the connection between these domains is something that people can at times miss. 
-            By making the connection more explicit I hope that software engineers who struggle with math can hopefully 
-            approach the verification of formulas from a view which they are more familiar with and thus more easily make progress (and likewise for mathematicians working with software)
-            
-
-
-
-
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            <strong>Technique 2: (Verify the formula in the limit)</strong><br>
+            This technique can be seen as a special case of <strong>Technique 1</strong> but since software engineering rarely 
+            includes limiting values I thought it could be instructive to separate them into two techniques. This technique can be 
+            summarized as 
+            <blockquote class="m-5">
+                If your formula should be valid for all input values, verify that it is valid when letting some input values 
+                go to infinity or some other extreme value.   
+            </blockquote>
+            The reasoning behind it is that it is usually intuitively easier to know what the answer will be when one of the input values 
+            is extreme in some sense.
+            For example, assume that you are at an exam in physics and need to derive a formula for the amount of solar energy that is absorbed
+            by a solar panel placed on your roof over a 1 hour period in the summer. You derive the formula 
+            <div class="text-center m-1">Solar energy absorbed = <i>B</i> &middot; ( 1/<i>d</i><sup>3</sup> ) &middot; <i>A</i><sup>2</sup> + <i>C</i> &middot; (<i>d</i><sup>2</sup>+1)/(<i>d</i><sup>2</sup> - 1) &middot; <i>A</i></div>
+            where <i>A, B</i> are positive constants, <i>d</i> is the distance from the sun to the earth and <i>A</i> is the area of your solar panel. 
+            While the formula can seem complex we can easily refute it by checking what happens as <i>d</i> increases to infinity. If the sun is an infinite distance away then we expect 
+            our solar panel to absorb 0 energy from the sun. 
+            For our formula, the limit when <i>d</i> goes to infinity is <i>C &middot; A</i> which is positive and not zero, indicating that there is some error with the formula.
         </div>
 
     </div>
