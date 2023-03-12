@@ -28,7 +28,7 @@
 
         </div>
 
-        <div class="w-full m-1 md:w-4/6 max-w-[900px] flex justify-center">
+        <!-- <div class="w-full m-1 md:w-4/6 max-w-[900px] flex justify-center">
             <div class="w-3/6 p-2">
                 <strong>Example (Balls in a jar):</strong><br>
                 Assume that you have a jar with <i>n</i> blue balls inside. 
@@ -47,12 +47,20 @@
 
 
             </div>    
-        </div>
-
+        </div> -->
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
             
-            <div class="m-2 h-80">
+            <strong>Example (Balls in a jar):</strong><br>
+            Assume that you have a jar with <i>n</i> blue balls inside. 
+            Every minute you pick up one ball at random from the jar,
+            paint it green and put it back in the jar.
+            If you by chance pick up a green ball from the jar that you painted at some previous minute, 
+            then you simply put it back in the jar. You perform this process for a total of <i>m</i>
+             minutes (so you will pick up <i>m</i> balls in total). 
+             <br>
+        
+            <div class="m-2 h-60 float-right">
                 <svg height="100%" width="100%" viewBox="0 0 150 100"
                 xmlns="http://www.w3.org/2000/svg" version="1.1">
                 
@@ -79,12 +87,53 @@
                 <rect x="0" y="86" width="150" height="2" fill="#334155"/>
 
                 </svg>
-                <!--stroke-linecap="round"-->
+                
+            
+            </div>
+            
+             <strong>Question:</strong><br>
+             How many balls, on average, do you expect to be green after <i>m</i> minutes
+              if there are <i>n</i>=7 blue balls in the jar at the beginning and the duration is <i>m</i>=10 minutes? (You do not necessarily have to perform any major calculations to reach the answer)
+            
+            
+        </div>
+
+
+        <!-- <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <div class="m-2 h-80">
+                <svg height="100%" width="100%" viewBox="0 0 150 100"
+                xmlns="http://www.w3.org/2000/svg" version="1.1">
+                
+                
+               <rect x="0" y="0" width="150" height="100"
+                stroke="#EEEEEE" fill="none" stroke-width="1" />
+                
+                <rect x="20" y="30" rx="4" ry="4" width="30" height="55", fill="none" stroke="#000000" stroke-width="1"/>
+                <rect x="18" y="18" width="35" height="20", fill="#ffffff" />
+                
+                <path d="M 20 38 Q 25 35 25 30" stroke="black" fill="none"/>
+                <line x1="20" y1="38" x2="20" y2="38" stroke="black" stroke-linecap="round"/>
+                
+                <path d="M 50 38 Q 45 36 45 30" stroke="black" fill="none"/>
+                <line x1="50" y1="38" x2="50" y2="38" stroke="black" stroke-linecap="round"/>
+
+                <rect x="22" y="24" rx="1" ry="1" width="26" height="6", fill="none" stroke="#000000" stroke-width="1"/>
+                <line x1="22" y1="27" x2="48" y2="27" stroke="black"/>
+
+                <polygon points="90,50 93,85 120,85 123,50" stroke-linejoin="round" fill="none" stroke="black" stroke-width="1" />
+                <path d="M 89 47 Q 106 90 124 47" stroke="black" fill="none"/>
+                <rect x="88" y="45" rx="2" ry="2" width="37" height="5", fill="#568203" stroke="#000000" stroke-width="1"/>
+
+                <rect x="0" y="86" width="150" height="2" fill="#334155"/>
+
+                </svg>
+                stroke-linecap="round"
             
             </div>
             
             
-        </div>
+        </div> -->
 
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]"  x-data="{ showResult : false, clickedRadioBallBtn : false }">
