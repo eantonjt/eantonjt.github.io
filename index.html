@@ -1,89 +1,28 @@
 <html>
   <head>
-    <script defer src="alpine.js"></script>
-    <script src="tailwind.js"></script>
+    <script defer src="code/alpine.js"></script>
+    <script src="css/tailwind.js"></script>
 </head>
 <body>
     
 
-    <div class="flex">
-        <aside class="h-screen sticky top-0 w-44" style="background-color: #556cc8; color: white;">
-            <div class="mx-3 my-3">
-            </div>
-            <div class="mx-3 my-3 text-2xl">
-                Latest posts                
-            </div>
-            
-            <div class="mx-3 my-3 text-2xl">
-                About
-            </div>
-
-            <div class="mx-3 my-3 text-2xl">
-                Github
-            </div>
-
-        </aside>
-        
-        <main class="w-full" style="background-color: white;">
-            
-            <div class="grid grid-cols-8 gap-1 h-16 max-w-[1500px]">
-                <div class="col-span-4 text-center" style="background-color: white;">
-                    
-                </div>
-                <div class="col-span-4" style="background-color: white;">
-                </div>
-            </div>
-            <div class="grid grid-cols-8 gap-1 max-w-[1500px]">
-                <div class="col-span-4 text-center" style="background-color: white;">
-
-                    <div class="mx-7 my-7 text-5xl font-bold" style="background-color: white; color: #556cc8;">Creating a git interface in C# to solve the problem with</div>
-                    
-                </div>
-                <div class="col-span-4" style="background-color: white;">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-8 gap-1 max-w-[1500px]"  x-data="{ open: false }">
-                <div class="col-span-4 text-center" style="background-color: white;">
-
-                    <div class="mx-7 my-7 text-left leading-relaxed" style="background-color: white;">
-                        Lorem, <span x-on:click="open = ! open" style="background-color: #556cc8; color: white;">ipsum</span> dolor sit amet consectetur adipisicing elit. Temporibus, optio? Explicabo delectus officia accusantium inventore iste atque minus obcaecati iusto quam, dolores facere dignissimos soluta eum ex, vero labore sit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum voluptates repellat rem eum quos tempore nulla reprehenderit soluta, repellendus ratione autem, quae velit ad cum earum ab magnam architecto perspiciatis.
-                    </div>
-                    
-                </div>
-                <div :class="open ? 'col-span-4 border-dashed border-t-2 border-indigo-600/25 border-dashed border-b-2 border-indigo-600/25 leading-relaxed' : 'col-span-4'">
-                    <div x-show="open" x-transition.duration.250ms class="mx-7 my-7 text-left px-3 py-3 " style="background-color: white;">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, optio? Explicabo delectus officia accusantium inventore iste atque minus obcaecati iusto quam, dolores facere dignissimos soluta eum ex, vero labore sit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Harus.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas obcaecati earum debitis, ipsa minus recusandae quae est maxime facere cumque quis officia ipsum nam repudiandae, nemo, sunt illo cupiditate consequuntur?
-                    </div> 
-                </div>
-            </div>
-
-            <div class="grid grid-cols-8 gap-1 max-w-[1500px]"  x-data="{ open: false }">
-                <div class="col-span-4 text-center" style="background-color: white;">
-
-                    <div class="mx-7 my-7 text-left leading-relaxed" style="background-color: white;">
-                        Lorem, <span x-on:click="open = ! open" style="background-color: #556cc8; color: white;">ipsum</span> dolor sit amet consectetur adipisicing elit. Temporibus, optio? Explicabo delectus officia accusantium inventore iste atque minus obcaecati iusto quam, dolores facere dignissimos soluta eum ex, vero labore sit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum voluptates repellat rem eum quos tempore nulla reprehenderit soluta, repellendus ratione autem, quae velit ad cum earum ab magnam architecto perspiciatis.
-                    </div>
-                    
-                </div>
-                <div :class="open ? 'col-span-4 border-dashed border-t-2 border-indigo-600/25 border-dashed border-b-2 border-indigo-600/25 leading-relaxed' : 'col-span-4'">
-                    <div x-show="open" x-transition.duration.250ms class="mx-7 my-7 text-left px-3 py-3 " style="background-color: white;">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, optio? Explicabo delectus officia accusantium inventore iste atque minus obcaecati iusto quam, dolores facere dignissimos soluta eum ex, vero labore sit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Harus.
-               
-                    </div> 
-                </div>
-            </div>
-
-
-        </main>
+    <div class="h-16 bg-[#334155]">
+        <div class="h-full mx-20 text-white text-4xl flex gap-8 items-center justify-center">
+            <span class="mx-1">Home</span> 
+            <span class="mx-1">About</span> 
+            <span class="mx-1">Github</span>
+        </div>
     </div>
 
+    <div class="w-screen max-w-full flex flex-col items-center justify-center">
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold text-center">
+            Posts
+        </div>
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-2xl">
+            <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="posts/software-unit-testing-math-formulas.html">Software unit testing and verifying math formulas</a><span style="float: right;">2023-03-18</span>
+        </div>
 
-</body>
-
-
-
-
-
+        
 </html>
