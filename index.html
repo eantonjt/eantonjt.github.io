@@ -17,12 +17,12 @@
     <div class="w-screen max-w-full flex flex-col items-center justify-center">
         
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
-            Software unit testing and math education
+            Software unit testing and verifying math formulas
         </div>
         
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
             Throughout my teaching experience in math I have found that students often lack knowledge of how to verify that their derived formulas are sensible.
-            While they usually have the ability to verify numerical results (such as realizing that they must have made a mistake if they got, e.g, negative variance, probabilities larger than 1, velocities larger than the speed of light etc), they lacked an ability to perform similar verifications for derived formulas.
+            While they usually have the ability to verify numerical results (such as realizing that they must have made a mistake if they got, e.g, negative variance, probabilities larger than 1, velocities larger than the speed of light etc), they lack an ability to perform similar verifications for derived formulas.
             I believe that students studying software engineering can use principles they learned about software unit testing to improve their skills in verifying math formulas.
             To introduce this connection I will use the following example:
 
@@ -356,6 +356,11 @@
             <br>
             So we can see that in this case we do not assert against a numerical value, but instead assert that it is possible to derive 
             the special case formula (where air resistance is neglected) from the more general formula (where air resistance is included).
+            <br>
+            <br>
+            <strong>Final words:</strong> I hope that this post will give you some techniques to quickly verify if your formulas are right or not. 
+            For me, these techniques have often been used as sanity checks to quickly see if what I am doing is sort of correct 
+            and to quickly discard erronous solutions.
             
         </div>
 
