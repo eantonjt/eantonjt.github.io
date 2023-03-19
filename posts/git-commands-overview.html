@@ -42,8 +42,7 @@
 
                 <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
                      git clone GITREMOTE NEWNAME<br>
-                     <span class="text-[#0b7800]">#Example</span><br>
-                     git clone https://github.com/libgit2/libgit2 myNewFolderName
+                     git clone https://github.com/libgit2/libgit2 myNewFolderName <span class="text-[#0b7800]">#Example</span><br>
                 </div>
             </div>
             
@@ -53,7 +52,7 @@
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
             
-            <strong>Skipping git add . for all TRACKED files with the -a flag</strong>
+            <strong>Some useful flags for git commit</strong>
             <br>
             <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
 
@@ -61,9 +60,10 @@
                      GIT CLI
                      <div class="float-right">📝 Copy</div>
                 </div>
-
+                
                 <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
-                     git commit -a -m "Adding changes made to all untracked files"<br>
+                     git commit -a -m "Adding changes made to all untracked files" <span class="text-[#0b7800]">Skipping git add . for all TRACKED files with the -a flag</span><br>
+                     git commit --amend <span class="text-[#0b7800]">Allows you to change the commit message of the last local commit that you did. Do not force-push amended commits since it ruins history for collaborators!</span><br>
                 </div>
             </div>
         </div>
@@ -84,16 +84,73 @@
                      git log -p <span class="text-[#0b7800]">Shows the diff introduced by each commit</span><br>
                      git log –S SearchText <span class="text-[#0b7800]">Lists the commits which added/removed the string "SearchText" to any file</span><br>
                      git log –-grep SearchText <span class="text-[#0b7800]">Searches through which commit messages contain a string "SearchText"</span><br>
+                     git log –-since=2.hours <span class="text-[#0b7800]">Shows git commits made in the last 2 hours</span><br>
+                     git log --since="2 days 1 minute" <span class="text-[#0b7800]">Shows git commits made in the last 2 days and 1 minute</span><br>
+                     git log --until=2.hours <span class="text-[#0b7800]">Shows git commits from start until 2 hours ago</span><br>
+                     git log FILEPATH <span class="text-[#0b7800]">Shows only git commits that modified file at FILEPATH</span><br>
+                     git --author=AUTHOR <span class="text-[#0b7800]">Shows only git commits made by AUTHOR</span><br>
+                     git log --oneline <span class="text-[#0b7800]">Concise log without author info etc</span><br>
 
                 </div>
             </div>
             Note that we can combine multiple of these flags together, to for example search for strings in commit messages and then show the diffs introduced by those commits etc.
+            By default, git log will only show commit history for the checkout branch, use the flag --all to see the log for all branches.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Showing what has happened with git show</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     git show COMMITHASH <span class="text-[#0b7800]">Shows the diff for the specific commit.</span><br>
+                     git show TAG <span class="text-[#0b7800]">Shows the diff for the specific tag.</span><br>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Working with git remote</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     ...
+                </div>
+            </div>
+            You can have multiple remotes etc...
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Some other notes</strong>
+            <br>
+            Below are some definitions for some terminology that appears in Git.
+            <ul class="p-3">
+                <li>Author: The person who originally wrote the work</li>
+                <li>Committer: The person that commited the work (This person can be different than the author if the author, e.g., sends the changes as a patch to the committer)</li>
+            </ul>
+            Even if you delete/modify a branch/commit one can at times still recover it...FILL IN MORE INFO
+            
         </div>
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
 
         </div>
-
+        
     </div>
 
 </body>
