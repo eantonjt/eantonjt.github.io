@@ -31,7 +31,7 @@
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
             
-            <strong>Naming the folder when cloning a repo</strong>
+            <strong>Working with remotes</strong>
             <br>
             <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
 
@@ -41,11 +41,17 @@
                 </div>
 
                 <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
-                     git clone GITREMOTE NEWNAME<br>
+                     git clone GITREMOTE NEWNAME<span class="text-[#0b7800]">Name the folder when you clone it</span><br>
                      git clone https://github.com/libgit2/libgit2 myNewFolderName <span class="text-[#0b7800]">#Example</span><br>
+                     git push origin my_local_branch:my_desired_remote_branch<span class="text-[#0b7800]">Push local changes on a branch to a different branch on remote</span><br>
+                     git fetch -all<span class="text-[#0b7800]">Fetches from all branches from the remotes</span><br>
                 </div>
             </div>
-            
+            When I first started out with git I was not aware that origin/branch was different from branch. But if we just see 
+            it as two different branches then it is easy to understand why we should not always do git pull, 
+            and instead do git fetch and then sole any merge conflicts that appear etc.<br>
+            Note that git clone does not need a remote does not need to be on another computer, you can clone from a shared drive or your own harddrive as
+            git clone path/to/project.git and we can add it as a remote with git remote add local_proj path/to/project.git
             
 
         </div>
@@ -66,6 +72,7 @@
                      git commit --amend <span class="text-[#0b7800]">Allows you to change the commit message of the last local commit that you did. Do not force-push amended commits since it ruins history for collaborators!</span><br>
                 </div>
             </div>
+            It can be good to ensure there are no whitespace errors before you commit, you can do this with git diff --check
         </div>
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
@@ -143,8 +150,27 @@
                 <li>Author: The person who originally wrote the work</li>
                 <li>Committer: The person that commited the work (This person can be different than the author if the author, e.g., sends the changes as a patch to the committer)</li>
             </ul>
-            Even if you delete/modify a branch/commit one can at times still recover it...FILL IN MORE INFO
-            
+            Even if you delete/modify a branch/commit one can at times still recover it...FILL IN MORE INFO<br><br>
+            In VSCode one can easily handle merge conflicts. If one wants to merge a branch into another branch then just follow these steps:
+            <ul class="p-3">
+                <li>Go to the branch CURRENT_BRANCH that is supposed to get the new changes</li>
+                <li>Press Ctrl-Shift-p and choose merge, then merge from THE_OTHER_BRANCH</li>
+                <li>If there is a conflict one will get a choice to accept incoming changes or what is currently there</li>
+                <li>When all conflicts have been resolved, add the file to the staging area and then commit.</li>
+            </ul>
+            Note you can do the same with remote branches but in some cases the Commit button can go away but then you can just type git commit in the terminal to finalize the merge.
+            <br>
+            <br>
+            VSCode also has limited functionality for partial staging. Go to the staging area and then select the regions 
+            that you want to commit and select "Stage selected ranges" in the top right.
+            <br>
+            <br>
+            Git rebasing should not be done on commits that others have based work on.
+            This is since rebasing will change the corresponding commit hashes and make it difficult 
+            for others to merge later. Because for them, a certain history will have happened 
+            but it will be different from what the remote says happened.
+
+
         </div>
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
