@@ -219,6 +219,7 @@ new Chart(ctx, {
     type: "line",
     data: data,
     options: {
+        maintainAspectRatio: false,
         plugins: {
             title: {
                 display: true,
