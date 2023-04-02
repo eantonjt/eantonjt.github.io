@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <script defer src="../code/alpine.js"></script>
+    <script src="../css/tailwind.js"></script>
+</head>
+<body>
+    
+
+    <div class="h-16 bg-[#334155]">
+        <div class="h-full mx-20 text-white text-4xl flex gap-8 items-center justify-center">
+            <span class="mx-1">Home</span> 
+            <span class="mx-1">About</span> 
+            <span class="mx-1">Github</span>
+        </div>
+    </div>
+
+    <div class="w-screen max-w-full flex flex-col items-center justify-center">
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
+            Git commands overview
+        </div>
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+
+            This post simply details some git commands that I have learned about when
+            reading the "Git pro book". This is mainly a summary for myself and to get a 
+            reason to explore these commands more, but hopefully others can find the notes useful as well.
+
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Working with remotes</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     git clone GITREMOTE NEWNAME<span class="text-[#0b7800]">Name the folder when you clone it</span><br>
+                     git clone https://github.com/libgit2/libgit2 myNewFolderName <span class="text-[#0b7800]">#Example</span><br>
+                     git push origin my_local_branch:my_desired_remote_branch<span class="text-[#0b7800]">Push local changes on a branch to a different branch on remote</span><br>
+                     git fetch -all<span class="text-[#0b7800]">Fetches from all branches from the remotes</span><br>
+                </div>
+            </div>
+            When I first started out with git I was not aware that origin/branch was different from branch. But if we just see 
+            it as two different branches then it is easy to understand why we should not always do git pull, 
+            and instead do git fetch and then sole any merge conflicts that appear etc.<br>
+            Note that git clone does not need a remote does not need to be on another computer, you can clone from a shared drive or your own harddrive as
+            git clone path/to/project.git and we can add it as a remote with git remote add local_proj path/to/project.git
+            
+
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Some useful flags for git commit</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+                
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     git commit -a -m "Adding changes made to all untracked files" <span class="text-[#0b7800]">Skipping git add . for all TRACKED files with the -a flag</span><br>
+                     git commit --amend <span class="text-[#0b7800]">Allows you to change the commit message of the last local commit that you did. Do not force-push amended commits since it ruins history for collaborators! You can also add new files to the commit if you add these to your staging area and then write git commit --amend</span><br>
+                </div>
+            </div>
+            It can be good to ensure there are no whitespace errors before you commit, you can do this with git diff --check
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Commands to make git log output in different format</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     git log -2 <span class="text-[#0b7800]">#Only shows last 2 commits</span><br>
+                     git log -p <span class="text-[#0b7800]">Shows the diff introduced by each commit</span><br>
+                     git log –S SearchText <span class="text-[#0b7800]">Lists the commits which added/removed the string "SearchText" to any file</span><br>
+                     git log –-grep SearchText <span class="text-[#0b7800]">Searches through which commit messages contain a string "SearchText"</span><br>
+                     git log –-since=2.hours <span class="text-[#0b7800]">Shows git commits made in the last 2 hours</span><br>
+                     git log --since="2 days 1 minute" <span class="text-[#0b7800]">Shows git commits made in the last 2 days and 1 minute</span><br>
+                     git log --until=2.hours <span class="text-[#0b7800]">Shows git commits from start until 2 hours ago</span><br>
+                     git log FILEPATH <span class="text-[#0b7800]">Shows only git commits that modified file at FILEPATH</span><br>
+                     git --author=AUTHOR <span class="text-[#0b7800]">Shows only git commits made by AUTHOR</span><br>
+                     git log --oneline <span class="text-[#0b7800]">Concise log without author info etc</span><br>
+
+                </div>
+            </div>
+            Note that we can combine multiple of these flags together, to for example search for strings in commit messages and then show the diffs introduced by those commits etc.
+            By default, git log will only show commit history for the checkout branch, use the flag --all to see the log for all branches.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Showing what has happened with git show</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     git show COMMITHASH <span class="text-[#0b7800]">Shows the diff for the specific commit.</span><br>
+                     git show TAG <span class="text-[#0b7800]">Shows the diff for the specific tag.</span><br>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Working with git remote</strong>
+            <br>
+            <div class="bg-[#000000] rounded-t-lg rounded-b-lg">
+
+                <div class="rounded-t-lg p-2 font-mono bg-[#343541] top-0 w-full sticky text-[#d9d9e3]">
+                     GIT CLI
+                     <div class="float-right">📝 Copy</div>
+                </div>
+
+                <div class="rounded-t-lg p-1 font-mono text-[#d9d9e3]">
+                     ...
+                </div>
+            </div>
+            You can have multiple remotes etc...
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Some other notes</strong>
+            <br>
+            Below are some definitions for some terminology that appears in Git.
+            <ul class="p-3">
+                <li>Author: The person who originally wrote the work</li>
+                <li>Committer: The person that commited the work (This person can be different than the author if the author, e.g., sends the changes as a patch to the committer)</li>
+            </ul>
+            Even if you delete/modify a branch/commit one can at times still recover it...FILL IN MORE INFO<br><br>
+            In VSCode one can easily handle merge conflicts. If one wants to merge a branch into another branch then just follow these steps:
+            <ul class="p-3">
+                <li>Go to the branch CURRENT_BRANCH that is supposed to get the new changes</li>
+                <li>Press Ctrl-Shift-p and choose merge, then merge from THE_OTHER_BRANCH</li>
+                <li>If there is a conflict one will get a choice to accept incoming changes or what is currently there</li>
+                <li>When all conflicts have been resolved, add the file to the staging area and then commit.</li>
+            </ul>
+            Note you can do the same with remote branches but in some cases the Commit button can go away but then you can just type git commit in the terminal to finalize the merge.
+            <br>
+            <br>
+            VSCode also has limited functionality for partial staging. Go to the staging area and then select the regions 
+            that you want to commit and select "Stage selected ranges" in the top right.
+            <br>
+            <br>
+            Git rebasing should not be done on commits that others have based work on.
+            This is since rebasing will change the corresponding commit hashes and make it difficult 
+            for others to merge later. Because for them, a certain history will have happened 
+            but it will be different from what the remote says happened.
+
+
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
+
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

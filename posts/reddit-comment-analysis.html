@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <script defer src="../code/alpine.js"></script>
+    <script defer src="../code/chart.js"></script>
+    <script defer src="../code/reddit-comment-analysis/drawCharts.js"></script>
+    <script src="../css/tailwind.js"></script>
+</head>
+<body>
+    
+
+    <div class="h-16 bg-[#334155]">
+        <div class="h-full mx-20 text-white text-4xl flex gap-8 items-center justify-center">
+            <span class="mx-1">Home</span> 
+            <span class="mx-1">About</span> 
+            <span class="mx-1">Github</span>
+        </div>
+    </div>
+
+    <div class="w-screen max-w-full flex flex-col items-center justify-center">
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
+            Word semantics in Reddit comments
+        </div>
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            (This post was adapted from my <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://antonfjohansson.github.io/blog_posts/reddit-comment-analysis.html">old website</a>).<br>
+            I was interested in analyzing how the assumed semantic meaning of the words "they're, their, there" has changed over the years.
+            To me it seems that more and more people confuse these words and I thus wanted 
+            to analyze if this confusion has increased over the years.
+            To analyze this I constructed word embeddings for the words from Reddit comments and investigated
+            how the similarity of the embeddings have evolved over time. The evolution of the similarity between the words can be seen in the chart below 
+            where we see that the embeddings for the words has become more similar over time, 
+            possibly indicating that these words are being incorrectly used in more and more posts.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            <canvas id="semanticChartOverview"></canvas>
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            A short description of how the entire analysis was done is as follows:
+            <ol class="list-disc pl-10">
+                <li>Reddit comments were downloaded from <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://files.pushshift.io/reddit/comments/">https://files.pushshift.io/reddit/comments/</a></li> and data for each month was analyzed independently from the other months.
+                <li>In C#, each reddit comment was checked to see if it contains either of the words "their", "they're", "there".</li>
+                <li>For each occurrence of the target words in a comment, a context window of size 2 centered on the target word was constructed and a co-occurrence matrix of the words inside the context window was created.</li>                    
+                <li>Every co-occurrence matrix associated with a given target word was added together</li>                    
+                <li>The cosine similarity was calculated between the co-occurrence matrices obtained for each target word to yield a similarity value for a given month</li>
+                <li> Streaming bootstrap techniques (<a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://proceedings.mlr.press/r3/oza01a.html">link</a>) were used to obtain the error bars.</li>  
+            </ol>
+            The code can be found on <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://github.com/eantonjt/reddit_comment_analysis/tree/master">github</a>.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
