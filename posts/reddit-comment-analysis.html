@@ -37,6 +37,19 @@
             <canvas id="semanticChartOverview"></canvas>
         </div>
 
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            A short description of how the entire analysis was done is as follows:
+            <ol class="list-disc pl-10">
+                <li>Reddit comments were downloaded from <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://files.pushshift.io/reddit/comments/">https://files.pushshift.io/reddit/comments/</a></li> and data for each month was analyzed independently from the other months.
+                <li>In C#, each reddit comment was checked to see if it contains either of the words "their", "they're", "there".</li>
+                <li>For each occurrence of the target words in a comment, a context window of size 2 centered on the target word was constructed and a co-occurrence matrix of the words inside the context window was created.</li>                    
+                <li>Every co-occurrence matrix associated with a given target word was added together</li>                    
+                <li>The cosine similarity was calculated between the co-occurrence matrices obtained for each target word to yield a similarity value for a given month</li>
+                <li> Streaming bootstrap techniques (<a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://proceedings.mlr.press/r3/oza01a.html">link</a>) were used to obtain the error bars.</li>  
+            </ol>
+            The code can be found here: 
+        </div>
+
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
 
         </div>
