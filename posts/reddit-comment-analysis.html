@@ -39,7 +39,18 @@
         </div>
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
-            A short description of how the entire analysis was done is as follows:
+            I thought these results were interesting since they sort of agree with the initial hypothesis that the confusion regarding 
+            these words have increased over time, but I think a deeper analysis is needed before one can draw any real conclusions. For example,
+            <ol class="list-disc pl-10">
+                <li>We do not what the baseline similarity ( where no confusion of these words is present) between the words is. It might 
+                    be that these mix-ups are relatively rare and does not impact the final embedding.
+                </li>
+                <li> If the mix-up has an impact on the embeddings, could Reddit increase in popularity during 2005-2010 causing an influx of non-native English speakers 
+                    explain the increasing confusion?</li>
+            </ol>
+            These future directions require some more extensive work, and are thus left as an exercise to the reader.
+
+            <strong>A short description of how the entire analysis was done is as follows:</strong>
             <ol class="list-disc pl-10">
                 <li>Reddit comments were downloaded from <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://files.pushshift.io/reddit/comments/">https://files.pushshift.io/reddit/comments/</a></li> and data for each month was analyzed independently from the other months.
                 <li>In C#, each reddit comment was checked to see if it contains either of the words "their", "they're", "there".</li>
