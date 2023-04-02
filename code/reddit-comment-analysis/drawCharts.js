@@ -147,7 +147,30 @@ cosineStd: 0.000866079828338789},
 pair: "they're vs their",
 cosineSim: 0.26026417758669723,
 cosineStd: 0.0016111909639217152},
-
+{commentDate: "2012-06",
+pair: "there vs they're",
+cosineSim: 0.1478830745060151,
+cosineStd: 0.0003512940486846556},
+{commentDate: "2012-06",
+pair: "there vs their",
+cosineSim: 0.17381533191277357,
+cosineStd: 0.0003400804570043836},
+{commentDate: "2012-06",
+pair: "they're vs their",
+cosineSim: 0.2618528260565839,
+cosineStd: 0.0017643764511400199},
+{commentDate: "2012-12",
+pair: "there vs they're",
+cosineSim: 0.14921890231832863,
+cosineStd: 0.00081038649832935},
+{commentDate: "2012-12",
+pair: "there vs their",
+cosineSim: 0.1717522853917668,
+cosineStd: 0.0007887579671925488},
+{commentDate: "2012-12",
+pair: "they're vs their",
+cosineSim: 0.2661853529035461,
+cosineStd: 0.0007004628163018135},
 ]
 
 const allPairs = ["they're vs their", "there vs their", "there vs they're"]
@@ -199,7 +222,7 @@ new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Evolution of word embedding similarity'
+                text: 'Evolution of word embedding similarity based on Reddit comments'
           },
           legend: {
             position: "bottom",
