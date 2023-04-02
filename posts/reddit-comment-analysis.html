@@ -45,8 +45,8 @@
                 <li>In C#, each reddit comment was checked to see if it contains either of the words "their", "they're", "there".</li>
                 <li>For each occurrence of the target words in a comment, a context window of size 2 centered on the target word was constructed and a co-occurrence matrix of the words inside the context window was created.</li>                    
                 <li>Every co-occurrence matrix associated with a given target word was added together</li>                    
-                <li>The cosine similarity was calculated between the co-occurrence matrices obtained for each target word to yield a similarity value for a given month</li>
-                <li> Streaming bootstrap techniques (<a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://proceedings.mlr.press/r3/oza01a.html">link</a>) were used to obtain the error bars.</li>  
+                <li>After going through every comment, the cosine similarity was calculated between the co-occurrence matrices obtained for each target word to yield a similarity value for a given month</li>
+                <li>Streaming bootstrap techniques (<a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://proceedings.mlr.press/r3/oza01a.html">link</a>) were used to obtain the error bars.</li>  
             </ol>
             The code can be found on <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://github.com/eantonjt/reddit_comment_analysis/tree/master">github</a>.
         </div>
