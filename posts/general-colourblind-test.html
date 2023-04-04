@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <script defer src="../code/alpine.js"></script>
+    <script defer src="../code/chart.js"></script>
+    <script defer src="../code/ishihara-disc/ishihara.js"></script>
+    <script src="../css/tailwind.js"></script>
+</head>
+<body>
+    
+
+    <div class="h-16 bg-[#334155]">
+        <div class="h-full mx-20 text-white text-4xl flex gap-8 items-center justify-center">
+            <span class="mx-1">Home</span> 
+            <span class="mx-1">About</span> 
+            <span class="mx-1">Github</span>
+        </div>
+    </div>
+
+    <div class="w-screen max-w-full flex flex-col items-center justify-center">
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
+            General colourblind test creation
+        </div>
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            (This post was adapted from my <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://antonfjohansson.github.io/blog_posts/reddit-comment-analysis.html">CHANGE</a>).<br>
+            Some time ago I wanted to create a program to generate the colourblind tests (formally known as Ishihara discs) where you have to distinguish a number or a letter inside a disc.
+            Instead of restricting myself to generating discs that only contain number or letters, I wanted my program to allow the user to create a disc 
+            containing any object. This can be useful for people that have developmental disabilities and who might have an easier time expressing that they can 
+            distinguish a star or flower as compared to a number or letter.
+            You can try a simple version of the program in the boxes below. 
+            Draw something in the dotted circle and when you are happy press the "Create disc" button.
+             Pressing the "Clear input" button clears your previous drawing into the dotted circle and "Download"
+              downloads the Ishihara Disc.
+            <br>
+            <i>(Note: This program was made in my spare-time and if you are concerned about vision deficiences in you or someone you know, please consult a professional and 
+            do not rely solely on this program.)</i>
+
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-96">
+            <div style="margin:auto; text-align: center;">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded m-1" onclick="myInputShape.getColorInd()">Create disc</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded m-1" onclick="myInputShape.clearInput()">Clear input</button>
+                <a id="download" download="ishiharaDisc.png">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded m-1" type="button" onClick="downloadIshiDisc()">Download</button></a>
+              </div>
+      
+                <div style="margin: auto; width: 100%; display: flex; flex-wrap: wrap; text-align: center; justify-content: center; align-items:center">
+                  <div id="drawDiv" style="margin-right: 1px; display: inline-block; width: 350px;">
+                      <canvas id="drawCanvas" style="border: 1px dotted black; width: 100%; height: 300px;"></canvas>   
+                  </div>
+          
+                  <div id="ishiDiv" style="display: inline-block; width: 350px;">
+                      <canvas id="ishiCanvas" style="border: 1px dotted black; width: 100%; height: 300px;"></canvas>   
+                  </div>
+              </div>
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-96">
+            The program works by looping through these steps until a sufficiently large area of the circle has been covered by coloured discs:
+            <ol class="list-disc pl-10">
+                <li>
+                    Randomize a position inside the circle. 
+                </li>
+                <li>
+                    Check if a circle can be added to this position. A circle can be added to a given position if
+                    <ol class="list-disc pl-10">
+                        <li>
+                            It does not overlap any previously created circle (we want this since the discs do not overlap in each other in an Ishihara disc).
+                        </li>
+                        <li>
+                            The largest radius that prevents it from overlapping previously generated circles is larger than a set threshold (we want this since we do not want discs that are arbitrarily small).
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    If the randomized position lies inside the user drawn object mask, set the colour of the circle to have a foreground colour, otherwise set the colour as a background colour.
+                </li>
+            </ol>
+        </div>
+
+        
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
