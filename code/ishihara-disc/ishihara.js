@@ -10,7 +10,6 @@ var drawDiv = document.getElementById("drawDiv");
 
 function drawIshiharaDisc(colInds) {
 
-
     var allColInds = colInds;
 
     // Function to obtain the circle radius for a newly placed disc
