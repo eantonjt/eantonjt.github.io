@@ -1,0 +1,319 @@
+<html>
+  <head>
+    <script defer src="../code/alpine.js"></script>
+    <script defer src="../code/chart.js"></script>
+    <script defer src="../code/ishihara-disc/ishihara.js"></script>
+    <script src="../css/tailwind.js"></script>
+</head>
+<body>
+    
+
+    <div class="h-16 bg-[#334155]">
+        <div class="h-full mx-20 text-white text-4xl flex gap-8 items-center justify-center">
+            <span class="mx-1">
+                <a class="font-medium dark:text-grey-500 hover:underline" href="../index.html">Home</a>
+            </span> 
+            <span class="mx-1">
+                <a class="font-medium dark:text-grey-500 hover:underline" href="../About.html">About</a>
+            </span> 
+            <span class="mx-1">
+                <a class="font-medium dark:text-grey-500 hover:underline" href="https://github.com/eantonjt">Github</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="w-screen max-w-full flex flex-col items-center justify-center">
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
+            Learnings from creating a chrome plugin - Gutenberg Enhancer
+        </div>
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            This post will detail a little bit about a chrome plugin that I worked on and what I learned from working 
+            on it. I worked on and off on this project 
+            in my sparetime for a period of around 1-2 weeks spread out over 4 months.
+
+            The project can be found on <a class="text-blue-600" href="https://github.com/eantonjt/Gutenberg-Enhancer/tree/main">github</a>.
+            The main focus of this post will be the lessons I learned from working on the project 
+            and what I would have done differently if I started it today. While it was fun making the 
+            plugin, I do not think I will spend that much time maintaining it. This is partly due to 
+            the code structure that I ended up with in the end but also that I did not find the final 
+            product to be as useful to me as I initially believed.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <strong>Project overview</strong>
+            <br>
+            I wanted to make a chrome plugin for the site <a class="text-blue-600" href="https://www.gutenberg.org/">gutenberg.org</a>
+            that would allow a user to play a book on the site like a movie, so instead of scrolling manually through the book 
+            when reading the book would automatically scroll down and you could sit back and relax. And to make this viewing of the book 
+            enjoyable I also wanted to add features such as:
+            <ol class="list-disc pl-10">
+                <li>
+                    Easily changeable fontsize so that a user could find a text size comfortable for them
+                </li>
+                <li> 
+                    Custom color-settings like "Dark mode", "Sepia mode" etc
+                </li>
+                <li>
+                    Progressbar showing the progress of the book and where the next chapter was.
+                </li>
+            </ol>
+            The video below showcases how these features look like in the final version of the plugin.
+            <div class="mx-auto w-[560px]">
+                <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/SD90Y-qBpKI?si=Ux8g1sLAc36jXYWI" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+            </div>
+            While the plugin works well in the demonstrated video above, I will not 
+            spend that much more time maintaining this project and I will detail a little bit 
+            of why that is and the lessons I learned from it below. If you are interested in contributing 
+            to this project then you can find it here.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
+            Lessons for the future
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+            
+            <div class="bg-white w-full mx-auto border border-[#334155]" x-data="{selected1:0,selected2:0,selected3:0,selected4:0}">
+                <ul class="shadow-box">
+                                
+                <li class="relative border-b border-[#334155]">
+        
+                    <button type="button" class="w-full px-8 py-6 text-left" @click="selected1 !== 1 ? selected1 = 1 : selected1 = null">
+                        <div class="flex items-center justify-between">
+                            <span>
+                                <strong>Use your prototypes as you would use the final product</strong>					
+                            </span>
+                            <span class="ico-plus"></span>
+                        </div>
+                    </button>
+        
+                    <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container1" x-bind:style="selected1 == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
+                        <div class="p-6">
+                            <p>A reason that I will not spend that much time maintaining this project is that after using 
+                                the project in its current state for some time, I realize that having the text scrolling 
+                                down like a movie feels more like a short-lived gimmick to me than an actual way of reading 
+                                a book that I could see myself using in the longer term.
+                                <br><br>          
+                                The issue was that I only started actively using the plugin after I had reached the stage where the design
+                                 and layout was in a relatively finished state. I did create low-fidelity prototypes 
+                                 in the early stages but I mainly used these 
+                                prototypes to evaluate the feasibility of the vision I had of the functionality and not in the actual way I 
+                                would use the product in its finished state. In my next project I will spend more time 
+                                actually using the low-fidelity prototypes as if it was the final product. </p>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="relative border-b border-[#334155]">
+        
+                    <button type="button" class="w-full px-8 py-6 text-left" @click="selected2 !== 1 ? selected2 = 1 : selected2 = null">
+                        <div class="flex items-center justify-between">
+                            <span>
+                                <strong>Reduce the reliance on factors you cannot control / Do not work against a changing API</strong>					
+                            </span>
+                            <span class="ico-plus"></span>
+                        </div>
+                    </button>
+        
+                    <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container2" x-bind:style="selected2 == 1 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+                        <div class="p-6">
+                            <p>The plugin currently works directly on the HTML page containing the book.
+                                Only a few new HTML tags are added to allow for scrolling effects and to create the control menus.
+                               
+                                This means that we are expecting most books to have similar tags and structure in their HTML pages
+                                onto which we can add the plugin functionality. 
+                               Unfortunately, since different contibutors use different designs for the books there is a 
+                               variation in the used HTML tags and classes. Most of the contributors to Gutenberg appears to use
+                                the same layout and tags, but there 
+                               is a difference for some of the books which means that you either have to 
+                               accommodate these special cases or not allow the same plugin functionality for those books.
+                               This also makes it difficult to maintain the plugin over an extended duration since 
+                               each new added book variation means the plugin needs to be updated.
+                               <br><br> 
+                               I believe that 
+                               it would have been easier to maintain and work with this project if instead of working 
+                               directly with all of the HTML tags in the book page (which contain factors outside of our control),
+                                I had tried to extract something more robust like only the content in the p-tags and built the plugin
+                                on that information. This would have reduced the functionality of the plugin, but it would have been much 
+                                easier to maintain and develop while still allowing for some of the original desired functionality.
+                        </div>
+                    </div>
+                </li>
+
+                <li class="relative border-b border-[#334155]">
+        
+                    <button type="button" class="w-full px-8 py-6 text-left" @click="selected3 !== 1 ? selected3 = 1 : selected3 = null">
+                        <div class="flex items-center justify-between">
+                            <span>
+                                <strong>Use some form of issue system to keep track of what to do</strong>
+                            </span>
+                            <span class="ico-plus"></span>
+                        </div>
+                    </button>
+        
+                    <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container3" x-bind:style="selected3 == 1 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                        <div class="p-6">
+                            <p>I had to take an extended break from working on this project due to work and other 
+                                things. Since I did not use any issue system to keep track of what should be done it 
+                                took quite some time to pick up the project and remember the best next step.
+                                <br><br>
+                                At work I think most developers use some form of issue system, but it might be rarer 
+                                to also use it for our own projects. I will try and start this habit from now on and 
+                                see how it helps me.</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="relative border-b border-[#334155]">
+        
+                    <button type="button" class="w-full px-8 py-6 text-left" @click="selected4 !== 1 ? selected4 = 1 : selected4 = null">
+                        <div class="flex items-center justify-between">
+                            <span>
+                                <strong>Research more before starting the development</strong>
+                            </span>
+                            <span class="ico-plus"></span>
+                        </div>
+                    </button>
+        
+                    <div class="relative overflow-hidden transition-all max-h-0 duration-700" style="" x-ref="container4" x-bind:style="selected4 == 1 ? 'max-height: ' + $refs.container4.scrollHeight + 'px' : ''">
+                        <div class="p-6">
+                            <p>When starting this project I had an idea of the final product and I was 
+                                eager to start implementing it. 
+                                I knew you could create a plugin using vanilla javascript and so that is how 
+                                I started. As the project grew I realize it would probably have been easier if I had 
+                                used some framework from the beginning, but refactoring at that stage would be 
+                                time-consuming. 
+                                
+                                If I had spent a little bit more time researching different ways of creating 
+                                chrome plugins from the beginning I could have gotten a better codebase later on 
+                                and made it more east to maintain the project as well.</p>
+                        </div>
+                    </div>
+                </li>
+
+                </ul>
+            </div>
+            
+            
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
+            Interesting problems I solved
+        </div>
+
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+
+            <strong>Smoothly scrolling the text</strong>
+            <br>
+            The naive solution to scrolling the text downwards would be to simply put the scroll 
+            inside a <code>setInterval</code> like, 
+
+            <div class="bg-[#f2f1f1] p-2">
+                <code>
+                var scrollPosition = 0;<br>
+                setInterval(() => {<br>
+                    &emsp;&emsp;window.scroll({<br>
+                        &emsp;&emsp;&emsp;&emsp;top: scrollPosition,<br>
+                        &emsp;&emsp;&emsp;&emsp;behavior: "smooth",<br>
+                        &emsp;&emsp;});<br>
+                        &emsp;&emsp;scrollPosition += 1;<br>
+                }, 1000)<br>
+                </code>
+            </div>
+            which will cause the text to scroll downwards. The issue with this technique is 
+            that the <code>window.scroll</code> method can only scroll down 1px at a time, which 
+            means that you will get a staggering scroll effect if you want the text to go down slowly.
+            This can be seen on this <a class="text-blue-600" href="https://codepen.io/Anton-Johansson/pen/KKbLyeL">codepen</a>.
+            <br><br>
+            To get a smoother scrolling effect which is easier on the eye 
+             we can instead put all of the text inside a div with id <code>content</code> and then
+             use the <code>translateY</code> css effect with a transition duration as 
+            <div class="bg-[#f2f1f1] p-2">
+                <code>
+                var scrollPosition = 0;<br>
+                var transitionDuration = 0.12;<br>
+                setInterval(() => {<br>
+                    &emsp;&emsp;var elem = document.getElementById("content");<br>
+                        &emsp;&emsp;elem.style.transition = "transform " + transitionDuration + "s" + " linear"<br>
+                        &emsp;&emsp;elem.style.transform = "translateY(" + (-scrollPosition) + "px" + ")"<br>
+                        &emsp;&emsp;scrollPosition += 2;<br>
+                }, 100)<br>
+                </code>
+            </div>
+            An example of such a smoother scrolling can be seen in this <a class="text-blue-600" href="https://codepen.io/Anton-Johansson/pen/WNLBMPM">codepen</a>.
+            While this is not a complex solution or problem, I think it is interesting since I believe most people would probably 
+            go for the scroll solution initially which does not work that well.
+        </div>
+
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
+
+            <strong>Keeping the text focused when changing the font-size</strong>
+            <br>
+            A problem that became apparent when using an early prototype of the plugin was the 
+            disorienting effect that occurs when increasing/decreasing the font-size 
+            when you have progressed a bit into the book. 
+            Since increasing the font-size will make every paragraph in the book take up more space on the screen,
+            the entire content of the book will be shifted downwards when the font-size is increased.
+            An extreme example of the issue this poses can be seen in the image below, and in this <a class="text-blue-600" href="https://codepen.io/Anton-Johansson/pen/PoXrydN">codepen</a>
+            <img src="../media/learnings-from-a-discontinued-project/book2.svg" alt="Example showcasing issue when increasing fontsize" class="mx-auto">
+            This effect an be disorienting to the reader and it can take some time for them to find their way back to
+            where they were reading.
+            <br><br>
+            The solution that I used for this issue was as follows:
+            <ol class="list-decimal pl-10">
+                <li>
+                    When the user clicks on "Increase font-size", find the HTML tag that currently covers most of the viewport area. Let's call that tag "A" (marked in blue in the image below).
+                </li>
+                <li> 
+                    Find the top and bottom positions of "A" with respect to the current viewport. Let's call these values "a" and "b".
+                </li>
+                <li>
+                    Now increase the font-size 
+                </li>
+                <li>
+                    Find the new top and bottom position of "A" with respect to the viewport, call these "x" and "y" and calculate the 
+                    height of the transformed "A" as h = x-y.
+                </li>
+                <li>
+                    Shift the entire booktext so that 
+                    the top position of "A" is placed at (a + (b - h))/2 with respect to the viewport. 
+                </li>
+            </ol>
+            An image overview of what happens can be seen in the image below.
+            <img src="../media/learnings-from-a-discontinued-project/book4.svg" alt="Example showcasing issue when increasing fontsize" class="mx-auto">
+            
+            As you could see when the font-size was increased in the overview video, this technique works quite well at ensuring that the 
+            text stays in focus even when changing the font-size. The reason this works is because shifting the top position of "A" to (a + (b - h))/2 will minimize
+             |x-a| + |y-b| (which is Math.abs(x-a) + Math.abs(y-b) for non-mathy people) 
+            and thus put the increased size tag "A" at a position that matches well with the position it had before the font-size increase. 
+            A geometric view of this is that the midpoint of the largened tag "A" is shifted to the midpoint of "A" before the font-size increase.
+            Here is a <a class="text-blue-600" href="https://codepen.io/Anton-Johansson/pen/xxmoQbo">codepen</a> that demonstrates this solution. 
+            <!-- Proof is simple, just set y=x+h and use that the median is the minimizer of sum of absolute deviations.-->
+
+
+
+
+
+        </div>
+
+        
+        <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] h-20">
+            
+
+            
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
