@@ -46,8 +46,8 @@
             <strong>Project overview</strong>
             <br>
             I wanted to make a chrome plugin for the site <a class="text-blue-600" href="https://www.gutenberg.org/">gutenberg.org</a>
-            that would allow a user to play a book on the site like a movie, so instead of scrolling manually through the book 
-            when reading the book would automatically scroll down and you could sit back and relax. And to make this viewing of the book 
+            that would allow a user to play a book on the site like a movie. So instead of scrolling manually through the book 
+            when reading, the book would automatically scroll down and you could sit back and relax. And to make this viewing of the book 
             enjoyable I also wanted to add features such as:
             <ol class="list-disc pl-10">
                 <li>
@@ -70,8 +70,7 @@
             </div>
             While the plugin works well in the demonstrated video above, I will not 
             spend that much more time maintaining this project and I will detail a little bit 
-            of why that is and the lessons I learned from it below. If you are interested in contributing 
-            to this project then you can find it here.
+            of why that is and the lessons I learned from it below.
         </div>
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px] text-4xl font-bold">
@@ -141,8 +140,12 @@
                                it would have been easier to maintain and work with this project if instead of working 
                                directly with all of the HTML tags in the book page (which contain factors outside of our control),
                                 I had tried to extract something more robust like only the content in the p-tags and built the plugin
-                                on that information. This would have reduced the functionality of the plugin, but it would have been much 
+                                on that information. This would have reduced the functionality of the plugin but it would have been much 
                                 easier to maintain and develop while still allowing for some of the original desired functionality.
+                                At the moment there are some books where the plugin has some issues with some styling
+                                because these books have slightly different formatting than the majority of the books, 
+                                like this <a class="text-blue-600" href="https://www.gutenberg.org/ebooks/71875">book</a> for example.
+                                
                         </div>
                     </div>
                 </li>
@@ -193,7 +196,7 @@
                                 
                                 If I had spent a little bit more time researching different ways of creating 
                                 chrome plugins from the beginning I could have gotten a better codebase later on 
-                                and made it more east to maintain the project as well.</p>
+                                and made it more easy to maintain the project as well.</p>
                         </div>
                     </div>
                 </li>
@@ -250,7 +253,7 @@
             </div>
             An example of such a smoother scrolling can be seen in this <a class="text-blue-600" href="https://codepen.io/Anton-Johansson/pen/WNLBMPM">codepen</a>.
             While this is not a complex solution or problem, I think it is interesting since I believe most people would probably 
-            go for the scroll solution initially which does not work that well.
+            go for the <code>window.scroll</code> solution initially which does not work that well.
         </div>
 
         <div class="w-full m-1 p-2 md:w-4/6 max-w-[900px]">
@@ -263,7 +266,7 @@
             Since increasing the font-size will make every paragraph in the book take up more space on the screen,
             the entire content of the book will be shifted downwards when the font-size is increased.
             An extreme example of the issue this poses can be seen in the image below, and in this <a class="text-blue-600" href="https://codepen.io/Anton-Johansson/pen/PoXrydN">codepen</a>
-            <img src="../media/learnings-from-a-discontinued-project/book2.svg" alt="Example showcasing issue when increasing fontsize" class="mx-auto">
+            <img src="../media/learnings-from-creating-chrome-plugin/book2.svg" alt="Example showcasing issue when increasing fontsize" class="mx-auto">
             This effect an be disorienting to the reader and it can take some time for them to find their way back to
             where they were reading.
             <br><br>
@@ -288,7 +291,7 @@
                 </li>
             </ol>
             An image overview of what happens can be seen in the image below.
-            <img src="../media/learnings-from-a-discontinued-project/book4.svg" alt="Example showcasing issue when increasing fontsize" class="mx-auto">
+            <img src="../media/learnings-from-creating-chrome-plugin/book4.svg" alt="Example showcasing issue when increasing fontsize" class="mx-auto">
             
             As you could see when the font-size was increased in the overview video, this technique works quite well at ensuring that the 
             text stays in focus even when changing the font-size. The reason this works is because shifting the top position of "A" to (a + (b - h))/2 will minimize
